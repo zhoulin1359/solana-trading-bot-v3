@@ -218,6 +218,7 @@ const runListener = async () => {
   listeners.on('pool', async (updatedAccountInfo: KeyedAccountInfo) => {
     console.log('pool',updatedAccountInfo);
     const poolState = LIQUIDITY_STATE_LAYOUT_V4.decode(updatedAccountInfo.accountInfo.data);
+    console.log(poolState);
     const poolOpenTime = parseInt(poolState.poolOpenTime.toString());
     const exists = await poolCache.get(poolState.baseMint.toString());
     if (!exists && poolOpenTime > runTimestamp) {
