@@ -210,6 +210,7 @@ const runListener = async () => {
   });
 
   listeners.on('market', (updatedAccountInfo: KeyedAccountInfo) => {
+    console.log(updatedAccountInfo);
     const marketState = MARKET_STATE_LAYOUT_V3.decode(updatedAccountInfo.accountInfo.data);
     marketCache.save(updatedAccountInfo.accountId.toString(), marketState);
   });
@@ -226,6 +227,7 @@ const runListener = async () => {
   });
 
   listeners.on('wallet', async (updatedAccountInfo: KeyedAccountInfo) => {
+    console.log(updatedAccountInfo);
     const accountData = AccountLayout.decode(updatedAccountInfo.accountInfo.data);
 
     if (accountData.mint.equals(quoteToken.mint)) {
