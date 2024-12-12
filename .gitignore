@@ -1,1 +1,4 @@
 /node_modules/
+/.idea/modules.xml
+/.idea/solana-trading-bot-v3.iml
+/.idea/vcs.xml
