@@ -210,13 +210,13 @@ const runListener = async () => {
   });
 
   listeners.on('market', (updatedAccountInfo: KeyedAccountInfo) => {
-    console.log(updatedAccountInfo);
+    console.log('market',updatedAccountInfo);
     const marketState = MARKET_STATE_LAYOUT_V3.decode(updatedAccountInfo.accountInfo.data);
     marketCache.save(updatedAccountInfo.accountId.toString(), marketState);
   });
 
   listeners.on('pool', async (updatedAccountInfo: KeyedAccountInfo) => {
-    console.log(updatedAccountInfo);
+    console.log('pool',updatedAccountInfo);
     const poolState = LIQUIDITY_STATE_LAYOUT_V4.decode(updatedAccountInfo.accountInfo.data);
     const poolOpenTime = parseInt(poolState.poolOpenTime.toString());
     const exists = await poolCache.get(poolState.baseMint.toString());
@@ -227,7 +227,7 @@ const runListener = async () => {
   });
 
   listeners.on('wallet', async (updatedAccountInfo: KeyedAccountInfo) => {
-    console.log(updatedAccountInfo);
+    console.log('wallet', updatedAccountInfo);
     const accountData = AccountLayout.decode(updatedAccountInfo.accountInfo.data);
 
     if (accountData.mint.equals(quoteToken.mint)) {
